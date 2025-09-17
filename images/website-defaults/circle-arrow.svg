@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="1280.000000pt"
+   height="1280.000000pt"
+   viewBox="0 0 1280.000000 1280.000000"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg1961"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1965" />
+  <metadata
+     id="metadata1955">
+Created by potrace 1.15, written by Peter Selinger 2001-2017
+</metadata>
+  <g
+     transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+     fill="#000000"
+     stroke="none"
+     id="g1959"
+     style="fill:#12b0fb;fill-opacity:1">
+    <path
+       d="M6050 12084 c-25 -2 -106 -9 -180 -14 -1648 -128 -3193 -965 -4226 -2290 -1222 -1566 -1584 -3634 -968 -5535 398 -1226 1195 -2299 2269 -3052 749 -525 1647 -881 2550 -1012 491 -71 1054 -80 1550 -25 998 111 1981 488 2787 1068 1290 927 2155 2289 2427 3821 74 411 95 689 88 1150 -6 422 -31 673 -103 1050 -358 1865 -1600 3461 -3329 4277 -636 300 -1265 470 -2025 548 -103 11 -752 21 -840 14z"
+       id="path1957"
+       style="fill:#12b0fb;fill-opacity:1" />
+  </g>
+  <g
+     fill="#ffffff"
+     id="g6274"
+     transform="matrix(1.757962,0,0,1.8028024,-12.289128,-28.070093)">
+    <path
+       d="M 290.76,205.51 H 205.514 L 333.384,376 205.514,546.49 H 290.76 L 418.63,376 Z"
+       id="path6270" />
+    <path
+       d="M 418.62,205.51 H 333.374 L 461.244,376 333.374,546.49 H 418.62 L 546.49,376 Z"
+       id="path6272" />
+  </g>
+</svg>

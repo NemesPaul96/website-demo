@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re:Web - Frontend Developer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Local font references - uncomment when deploying online -->
+    <!-- <link rel="preload" href="fonts/SpaceGrotesk-Medium.ttf" as="font" type="font/ttf" crossorigin> -->
+    <!-- <style>
+        @font-face {
+            font-family: 'Space Grotesk';
+            src: url('fonts/SpaceGrotesk-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style> -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo Section -->
+            <div class="nav-logo">
+                <img src="images/website-defaults/logo.svg" alt="Re:Web Logo" class="logo-image">
+                <span class="logo-text">Re:Web</span>
+            </div>
+
+            <!-- Right Side: Menu Items and Controls -->
+            <div class="nav-right">
+                <!-- Menu Items -->
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link nav-link-home">
+                            <i class="fa-solid fa-earth-europe nav-icon"></i>
+                            <span class="nav-text-fallback">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link nav-link-dropdown" id="blogToggle">
+                            <i class="fa-brands fa-blogger nav-icon"></i>
+                            <span class="nav-text">Blog</span>
+                            <i class="fa-solid fa-caret-down nav-dropdown-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link nav-link-dropdown" id="projectsToggle">
+                            <i class="fa-solid fa-code nav-icon"></i>
+                            <span class="nav-text">Projects</span>
+                            <i class="fa-solid fa-caret-down nav-dropdown-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link nav-link-dropdown" id="servicesToggle">
+                            <i class="fa-solid fa-envelopes-bulk nav-icon"></i>
+                            <span class="nav-text">Services</span>
+                            <i class="fa-solid fa-caret-down nav-dropdown-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">
+                            <i class="fa-solid fa-envelope-circle-check nav-icon"></i>
+                            <span class="nav-text">Contact</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Controls Section -->
+                <div class="nav-controls">
+                    <!-- Dark/Light Mode Toggle -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="lang-btn" id="langToggle">
+                            <img src="images/language/us-flag.svg" alt="US Flag" class="lang-flag-nav">
+                            <span class="lang-text">EN</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-container">
+            <ul class="mobile-nav-menu">
+                <li class="mobile-nav-item">
+                    <a href="#home" class="mobile-nav-link">
+                        <i class="fa-solid fa-earth-europe mobile-nav-icon"></i>
+                        <span class="mobile-nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="/blog" class="mobile-nav-link">
+                        <i class="fa-brands fa-blogger mobile-nav-icon"></i>
+                        <span class="mobile-nav-text">Blog</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="/projects" class="mobile-nav-link">
+                        <i class="fa-solid fa-code mobile-nav-icon"></i>
+                        <span class="mobile-nav-text">Projects</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="/services" class="mobile-nav-link">
+                        <i class="fa-solid fa-envelopes-bulk mobile-nav-icon"></i>
+                        <span class="mobile-nav-text">Services</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#contact" class="mobile-nav-link">
+                        <i class="fa-solid fa-envelope-circle-check mobile-nav-icon"></i>
+                        <span class="mobile-nav-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <!-- Language Mega Menu -->
+    <div class="lang-mega-menu" id="langMegaMenu">
+        <div class="lang-mega-container">
+            <h3 class="lang-mega-title">Choose Your Language</h3>
+            <div class="lang-grid">
+                <div class="lang-item" data-lang="en">
+                    <img src="images/language/us-flag.svg" alt="US Flag" class="lang-flag-mega">
+                    <span class="lang-name">English</span>
+                </div>
+                <div class="lang-item" data-lang="ro">
+                    <img src="images/language/ro-flag.svg" alt="Romanian Flag" class="lang-flag-mega">
+                    <span class="lang-name">Română</span>
+                </div>
+                <div class="lang-item" data-lang="fr">
+                    <img src="images/language/fr-flag.svg" alt="French Flag" class="lang-flag-mega">
+                    <span class="lang-name">Français</span>
+                </div>
+                <div class="lang-item" data-lang="es">
+                    <img src="images/language/es-flag.svg" alt="Spanish Flag" class="lang-flag-mega">
+                    <span class="lang-name">Español</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Mega Menu -->
+    <div class="blog-mega-menu" id="blogMegaMenu">
+        <div class="mega-menu-container">
+            <div class="blog-mega-content">
+                <div class="mega-menu-header">
+                    <h3 class="mega-menu-title">Blog</h3>
+                    
+                    <div class="blog-articles-grid">
+                    <!-- Latest Article -->
+                    <div class="blog-section">
+                        <h4 class="blog-section-title">Latest Article</h4>
+                        <div class="blog-article-card featured">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=200&fit=crop&crop=center" alt="Modern Web Development" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <h5 class="article-title">Modern Web Development Trends in 2024</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Article -->
+                    <div class="blog-section">
+                        <h4 class="blog-section-title">Popular Article</h4>
+                        <div class="blog-article-card featured">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop&crop=center" alt="CSS Grid Layout" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <h5 class="article-title">Mastering CSS Grid: A Complete Guide</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Articles List -->
+                    <div class="blog-section recent-articles">
+                        <h4 class="blog-section-title">Recent Posts</h4>
+                        <div class="recent-articles-list">
+                            <div class="recent-article-item">
+                                <div class="recent-article-image">
+                                    <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=80&h=80&fit=crop&crop=center" alt="React Hooks" loading="lazy">
+                                </div>
+                                <div class="recent-article-info">
+                                    <h6 class="recent-article-title">React Hooks Best Practices</h6>
+                                </div>
+                            </div>
+                            
+                            <div class="recent-article-item">
+                                <div class="recent-article-image">
+                                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=80&h=80&fit=crop&crop=center" alt="Performance" loading="lazy">
+                                </div>
+                                <div class="recent-article-info">
+                                    <h6 class="recent-article-title">Website Performance Optimization</h6>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="mega-menu-cta">
+                        <a href="/blog" class="view-blog-btn">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            View Blog
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Mega Menu -->
+    <div class="projects-mega-menu" id="projectsMegaMenu">
+        <div class="mega-menu-container">
+            <div class="projects-mega-content">
+                <div class="mega-menu-header">
+                    <h3 class="mega-menu-title">Projects</h3>
+                    <div class="projects-slider-container">
+                        <div class="slider-wrapper">
+                            <button class="slider-arrow slider-arrow-left" id="sliderArrowLeft">
+                                <img src="images/website-defaults/circle-arrow.svg" alt="Previous" class="arrow-image arrow-left">
+                                <i class="fa-solid fa-angles-left arrow-fallback"></i>
+                            </button>
+                            <div class="projects-slider">
+                                <div class="slider-track" id="sliderTrack">
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=350&fit=crop" alt="Redesign" class="project-image">
+                                        <h4 class="project-title">Redesign</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=350&fit=crop" alt="HTML Signatures" class="project-image">
+                                        <h4 class="project-title">HTML Signatures</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=350&fit=crop" alt="HTML Email" class="project-image">
+                                        <h4 class="project-title">HTML Email</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=350&fit=crop" alt="HTML to PDF" class="project-image">
+                                        <h4 class="project-title">HTML to PDF</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&h=350&fit=crop" alt="Games" class="project-image">
+                                        <h4 class="project-title">Games</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=350&fit=crop" alt="Apps" class="project-image">
+                                        <h4 class="project-title">Apps</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=350&fit=crop" alt="Case Studies" class="project-image">
+                                        <h4 class="project-title">Case Studies</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=350&fit=crop" alt="Requests" class="project-image">
+                                        <h4 class="project-title">Requests</h4>
+                                    </div>
+                                    <div class="project-item">
+                                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=350&fit=crop" alt="Websites" class="project-image">
+                                        <h4 class="project-title">Websites</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider-arrow slider-arrow-right" id="sliderArrowRight">
+                                <img src="images/website-defaults/circle-arrow.svg" alt="Next" class="arrow-image arrow-right">
+                                <i class="fa-solid fa-angles-right arrow-fallback"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mega-menu-cta">
+                        <a href="/projects" class="view-projects-btn">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            View Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Mega Menu -->
+    <div class="services-mega-menu" id="servicesMegaMenu">
+        <div class="mega-menu-container">
+            <div class="services-mega-content">
+                <div class="mega-menu-header">
+                    <h3 class="mega-menu-title">Services</h3>
+                    <div class="services-slider-container">
+                        <div class="slider-wrapper">
+                            <button class="slider-arrow slider-arrow-left" id="servicesSliderArrowLeft">
+                                <img src="images/website-defaults/circle-arrow.svg" alt="Previous" class="arrow-image arrow-left">
+                                <i class="fa-solid fa-angles-left arrow-fallback"></i>
+                            </button>
+                            <div class="services-slider">
+                                <div class="services-slider-track" id="servicesSliderTrack">
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=350&fit=crop" alt="HTML to PDF Conversion" class="service-image">
+                                        <h4 class="service-title">HTML to PDF Conversion</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=350&fit=crop" alt="Website Content Updates" class="service-image">
+                                        <h4 class="service-title">Website Content Updates</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=350&fit=crop" alt="Web Development Consultation" class="service-image">
+                                        <h4 class="service-title">Web Development Consultation</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=350&fit=crop" alt="Website Backup Solutions" class="service-image">
+                                        <h4 class="service-title">Website Backup Solutions</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&h=350&fit=crop" alt="Hosting Migration" class="service-image">
+                                        <h4 class="service-title">Hosting Migration</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=350&fit=crop" alt="Responsive Design Implementation" class="service-image">
+                                        <h4 class="service-title">Responsive Design Implementation</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=350&fit=crop" alt="Custom Page Development" class="service-image">
+                                        <h4 class="service-title">Custom Page Development</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=350&fit=crop" alt="Contact Form Integration" class="service-image">
+                                        <h4 class="service-title">Contact Form Integration</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=350&fit=crop" alt="HTML Email Templates" class="service-image">
+                                        <h4 class="service-title">HTML Email Templates</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&h=350&fit=crop" alt="Email Signature Design" class="service-image">
+                                        <h4 class="service-title">Email Signature Design</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=350&fit=crop" alt="Figma to HTML Conversion" class="service-image">
+                                        <h4 class="service-title">Figma to HTML Conversion</h4>
+                                    </div>
+                                    <div class="service-item">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=350&fit=crop" alt="PSD to HTML Conversion" class="service-image">
+                                        <h4 class="service-title">PSD to HTML Conversion</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider-arrow slider-arrow-right" id="servicesSliderArrowRight">
+                                <img src="images/website-defaults/circle-arrow.svg" alt="Next" class="arrow-image arrow-right">
+                                <i class="fa-solid fa-angles-right arrow-fallback"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mega-menu-cta">
+                        <a href="/services" class="view-services-btn">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            View Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Blog section placeholder -->
+        <div id="blog" style="position: absolute; top: -80px;"></div>
+        
+        <!-- Before and After Slider Background -->
+        <div class="hero-slider-background">
+            <div class="before-after-slider" id="beforeAfterSlider">
+                <!-- Single Slider Container -->
+                <div class="slider-container">
+                    <img src="images/projects/ironcraft-before.png" alt="Before" class="slider-image before-image" id="beforeImage">
+                    <img src="images/projects/ironcraft-after.png" alt="After" class="slider-image after-image" id="afterImage">
+                    <div class="slider-handle" id="sliderHandle">
+                        <div class="handle-line"></div>
+                        <div class="handle-circle">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                    </div>
+                    <div class="slider-labels">
+                        <span class="label label-before">Before</span>
+                        <span class="label label-after">After</span>
+                    </div>
+                    <div class="slider-title">
+                        <h3 id="sliderTitle">Ironcraft Website Redesign</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dark Overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- Slider Control Button -->
+        <button class="slider-control-btn" id="sliderControlBtn" aria-label="Toggle slider auto-play">
+            <i class="fa-solid fa-pause"></i>
+        </button>
+
+        
+
+        <!-- Hero Content -->
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="hero-role">
+                            <span class="txt-type" data-wait="3000" data-words='["Web Developer", "Web Designer", "Email Developer", "UI/UX Dev"]'></span>
+                        </span>
+                    </h1>
+                    <h2 class="hero-description">
+                        I create websites and games, and I update outdated websites to meet current standards using <img src="images/skills/HTML5.svg" alt="HTML5" class="desc-icon"> HTML <img src="images/skills/CSS3.svg" alt="CSS3" class="desc-icon"> CSS and <img src="images/skills/javascript6.svg" alt="JavaScript" class="desc-icon"> JavaScript.
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Down Arrow -->
+        <div class="scroll-arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Developer Status Popup -->
+        <div class="dev-status-popup">
+            <div class="status-indicator"></div>
+            <p class="status-text">DEV is currently working on the website. Some functionality may be temporarily unavailable. I appreciate your patience and understanding!</p>
+        </div>
+    </section>
+
+<div class="portfolio-skills-title"> <h2>Skills</h2> <i class="fa-solid fa-code"></i> </div>
+
+  <section class="skills coding-skills">
+    <div class="skills-container">
+        
+        <div class="skills-flex">
+            <div class="skills-circle">
+                <div class="circle-container" id="coding-circle">
+                    <!-- All hexagons will be positioned here by JavaScript -->
+                </div>
+            </div><!-- /skills-circle -->
+
+            <div class="skill-info">
+                <div class="skill-description">
+                    <!-- Content remains the same as before -->
+                    <div class="html-desc">
+                        <p class="skill-title"></p>
+                        <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages and web applications. It provides the basic structure of sites.</p>
+                        <ul>
+                            <li>Create page structure and content</li>
+                            <li>Build forms for user input</li>
+                            <li>Embed images and media</li>
+                            <li>Create navigation menus</li>
+                            <li>Organize content with semantic tags</li>
+                            <li>Establish document hierarchy</li>
+                        </ul>
+                    </div>
+                    <div class="css-desc">
+                        <p class="skill-title"></p>
+                        <p>CSS (Cascading Style Sheets) is a stylesheet language used to describe the presentation of HTML documents, including colors, layout, and fonts.</p>
+                        <ul>
+                            <li>Style web page elements</li>
+                            <li>Create responsive layouts</li>
+                            <li>Implement animations</li>
+                            <li>Control typography</li>
+                            <li>Manage cross-device compatibility</li>
+                            <li>Apply modern design systems</li>
+                        </ul>
+                    </div>
+                    <div class="js-desc">
+                        <p class="skill-title"></p>
+                        <p>JavaScript is a scripting language that enables interactive web pages. It allows dynamic content updates, animations, and complex functionality.</p>
+                        <ul>
+                            <li>DOM manipulation</li>
+                            <li>User interaction handling</li>
+                            <li>API communication</li>
+                            <li>Form validation</li>
+                            <li>Browser storage management</li>
+                            <li>Front-end framework development</li>
+                        </ul>
+                    </div>
+                    <div class="php-desc">
+                        <p class="skill-title"></p>
+                        <p>PHP is a server-side scripting language designed for web development. It handles backend operations and database interactions.</p>
+                        <ul>
+                            <li>Server-side logic</li>
+                            <li>Database operations (MySQL)</li>
+                            <li>User authentication</li>
+                            <li>Session management</li>
+                            <li>Content Management Systems</li>
+                            <li>E-commerce functionality</li>
+                        </ul>
+                    </div>
+                    <div class="sass-desc">
+                        <p class="skill-title"></p>
+                        <p>SASS (Syntactically Awesome Style Sheets) is a CSS preprocessor that adds powerful features like variables, nesting, and mixins.</p>
+                        <ul>
+                            <li>Create maintainable CSS</li>
+                            <li>Use variables and functions</li>
+                            <li>Nested selectors</li>
+                            <li>Modular style architecture</li>
+                            <li>Advanced mixin creation</li>
+                            <li>Code splitting/partials</li>
+                        </ul>
+                    </div>
+                    <div class="nodejs-desc">
+                        <p class="skill-title"></p>
+                        <p>Node.js is a JavaScript runtime built on Chrome's V8 engine, used for building fast and scalable server-side applications.</p>
+                        <ul>
+                            <li>Build RESTful APIs</li>
+                            <li>Real-time applications</li>
+                            <li>Microservices architecture</li>
+                            <li>Server-side rendering</li>
+                            <li>Database integration</li>
+                            <li>Authentication services</li>
+                        </ul>
+                    </div>
+                    <div class="react-desc">
+                        <p class="skill-title"></p>
+                        <p>React is a JavaScript library for building user interfaces, focusing on component-based architecture and efficient DOM updates.</p>
+                        <ul>
+                            <li>Create reusable components</li>
+                            <li>Single Page Applications</li>
+                            <li>State management</li>
+                            <li>Virtual DOM manipulation</li>
+                            <li>Cross-platform apps (React Native)</li>
+                            <li>UI/UX pattern implementation</li>
+                        </ul>
+                    </div>
+                    <div class="python-desc">
+                        <p class="skill-title"></p>
+                        <p>Python is a versatile, high-level programming language known for its readability and extensive libraries.</p>
+                        <ul>
+                            <li>Web development (Django, Flask)</li>
+                            <li>Data analysis and visualization</li>
+                            <li>Machine learning and AI</li>
+                            <li>Scripting and automation</li>
+                            <li>Scientific computing</li>
+                            <li>API development</li>
+                        </ul>
+                    </div>
+                    <div class="kotlin-desc">
+                        <p class="skill-title"></p>
+                        <p>Java is a class-based, object-oriented programming language designed for portability and cross-platform compatibility.</p>
+                        <ul>
+                            <li>Enterprise application development</li>
+                            <li>Android app development</li>
+                            <li>Web applications</li>
+                            <li>Big data technologies</li>
+                            <li>Server-side technologies</li>
+                            <li>Desktop GUI applications</li>
+                        </ul>
+                    </div>
+                    <!-- <div class="csharp-desc">
+                        <p class="skill-title"></p>
+                        <p>C# is a modern, object-oriented programming language developed by Microsoft for the .NET platform.</p>
+                        <ul>
+                            <li>Windows desktop applications</li>
+                            <li>Game development (Unity)</li>
+                            <li>Web services and APIs</li>
+                            <li>Enterprise software</li>
+                            <li>Mobile applications (Xamarin)</li>
+                            <li>Cloud applications</li>
+                        </ul>
+                    </div>-->
+                    <!--<div class="ruby-desc">
+                        <p class="skill-title"></p>
+                        <p>Ruby is a dynamic, open source programming language with a focus on simplicity and productivity.</p>
+                        <ul>
+                            <li>Web development (Ruby on Rails)</li>
+                            <li>Prototyping</li>
+                            <li>Scripting and automation</li>
+                            <li>Data processing</li>
+                            <li>DevOps tools</li>
+                            <li>Command-line utilities</li>
+                        </ul>
+                    </div>-->
+                    <!-- <div class="go-desc">
+                        <p class="skill-title"></p>
+                        <p>Go (Golang) is a statically typed, compiled language designed at Google with a focus on simplicity and efficiency.</p>
+                        <ul>
+                            <li>Cloud services</li>
+                            <li>Distributed systems</li>
+                            <li>Network programming</li>
+                            <li>Concurrent programming</li>
+                            <li>Command-line tools</li>
+                            <li>Microservices architecture</li>
+                        </ul>
+                    </div>-->
+                    <!-- <div class="swift-desc">
+                        <p class="skill-title"></p>
+                        <p>Swift is a powerful and intuitive programming language for iOS, macOS, watchOS, and tvOS.</p>
+                        <ul>
+                            <li>iOS and macOS app development</li>
+                            <li>Mobile UI/UX implementation</li>
+                            <li>Performance-critical applications</li>
+                            <li>Augmented reality apps</li>
+                            <li>Game development (SpriteKit)</li>
+                            <li>Server-side development</li>
+                        </ul>
+                    </div>-->
+                    <!-- <div class="rust-desc">
+                        <p class="skill-title"></p>
+                        <p>Rust is a systems programming language focused on safety, speed, and concurrency.</p>
+                        <ul>
+                            <li>Systems programming</li>
+                            <li>WebAssembly applications</li>
+                            <li>Game engines</li>
+                            <li>Operating systems</li>
+                            <li>Browser components</li>
+                            <li>Performance-critical backends</li>
+                        </ul>
+                    </div>-->
+                </div><!-- /skill-description -->
+                
+                <div class="scroll-indicator">
+                    <svg width="20px" height="30px" viewBox="0 0 247 390" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                        <path id="wheel" d="M123.359,79.775l0,72.843" style="fill:none;stroke:#666;stroke-width:20px;"/>
+                        <path id="mouse" d="M236.717,123.359c0,-62.565 -50.794,-113.359 -113.358,-113.359c-62.565,0 -113.359,50.794 -113.359,113.359l0,143.237c0,62.565 50.794,113.359 113.359,113.359c62.564,0 113.358,-50.794 113.358,-113.359l0,-143.237Z" style="fill:none;stroke:#666;stroke-width:20px;"/>
+                    </svg>
+                    <p class="scroll-text">Scroll down</p>
+                </div><!-- /scroll-indicator -->
+                
+            </div><!-- /skill-info -->
+        </div><!-- /skills-flex -->
+    </div><!-- /skills-container -->
+</section>
+
+<section class="skills software-skills">
+    <div class="skills-container">
+        <div class="skills-flex">
+            <div class="skills-circle">
+                <div class="circle-container" id="software-circle">
+                    <!-- All hexagons will be positioned here by JavaScript -->
+                </div>
+            </div><!-- /skills-circle -->
+            
+            <div class="skill-info">
+                 
+                <div class="skill-description">
+                    <!-- Content remains the same as before -->
+                    <div class="ai-desc">
+                        <p class="skill-title"></p>
+                        <p>Artificial Intelligence (AI) involves creating smart systems capable of performing tasks that typically require human intelligence.</p>
+                        <ul>
+                            <li>Machine learning models</li>
+                            <li>Natural language processing</li>
+                            <li>Predictive analytics</li>
+                            <li>Computer vision</li>
+                            <li>Neural networks</li>
+                            <li>Automation systems</li>
+                        </ul>
+                    </div>
+                    <div class="bootstrap-desc">
+                        <p class="skill-title"></p>
+                        <p>Bootstrap is a powerful front-end framework for developing responsive, mobile-first websites.</p>
+                        <ul>
+                            <li>Responsive grid system</li>
+                            <li>Pre-built components</li>
+                            <li>Cross-browser compatibility</li>
+                            <li>Customizable themes</li>
+                            <li>Rapid prototyping</li>
+                            <li>Mobile optimization</li>
+                        </ul>
+                    </div>
+                    <div class="photoshop-desc">
+                        <p class="skill-title"></p>
+                        <p>Adobe Photoshop is the industry-standard image editing software for digital graphics manipulation.</p>
+                        <ul>
+                            <li>Photo retouching</li>
+                            <li>Digital painting</li>
+                            <li>Composite images</li>
+                            <li>Web design mockups</li>
+                            <li>Color correction</li>
+                            <li>Texture creation</li>
+                        </ul>
+                    </div>
+                    <div class="figma-desc">
+                        <p class="skill-title"></p>
+                        <p>Figma is a collaborative interface design tool for creating user interfaces and prototypes.</p>
+                        <ul>
+                            <li>Interactive prototypes</li>
+                            <li>Design systems</li>
+                            <li>Vector networks</li>
+                            <li>Team collaboration</li>
+                            <li>Component libraries</li>
+                            <li>Design handoff</li>
+                        </ul>
+                    </div>
+                    <div class="canva-desc">
+                        <p class="skill-title"></p>
+                        <p>Canva is a graphic design platform for creating social media graphics, presentations, and visual content.</p>
+                        <ul>
+                            <li>Template-based designs</li>
+                            <li>Brand kit management</li>
+                            <li>Collaborative editing</li>
+                            <li>Stock asset library</li>
+                            <li>Quick visual creation</li>
+                            <li>Multi-format exports</li>
+                        </ul>
+                    </div>
+                    <div class="wordpress-desc">
+                        <p class="skill-title"></p>
+                        <p>WordPress is a content management system powering over 40% of all websites on the internet.</p>
+                        <ul>
+                            <li>Theme customization</li>
+                            <li>Plugin development</li>
+                            <li>Content management</li>
+                            <li>E-commerce solutions</li>
+                            <li>SEO optimization</li>
+                            <li>Multilingual sites</li>
+                        </ul>
+                    </div>
+                    <div class="github-desc">
+                        <p class="skill-title"></p>
+                        <p>Git is a distributed version control system for tracking changes in source code during development.</p>
+                        <ul>
+                            <li>Version control</li>
+                            <li>Branch management</li>
+                            <li>Code collaboration</li>
+                            <li>Conflict resolution</li>
+                            <li>Code history tracking</li>
+                            <li>Continuous integration</li>
+                        </ul>
+                    </div>
+                    <div class="mail-chimp-desc">
+                        <p class="skill-title"></p>
+                        <p>Docker is a platform for developing, shipping, and running applications in containers.</p>
+                        <ul>
+                            <li>Containerization</li>
+                            <li>Microservices architecture</li>
+                            <li>Environment consistency</li>
+                            <li>CI/CD pipelines</li>
+                            <li>Scalable deployments</li>
+                            <li>Isolated environments</li>
+                        </ul>
+                    </div>
+                    <div class="aws-desc">
+                        <p class="skill-title"></p>
+                        <p>Amazon Web Services (AWS) is a comprehensive cloud computing platform offering over 200 services.</p>
+                        <ul>
+                            <li>Cloud infrastructure</li>
+                            <li>Serverless computing</li>
+                            <li>Database solutions</li>
+                            <li>Content delivery</li>
+                            <li>Machine learning services</li>
+                            <li>Scalable storage</li>
+                        </ul>
+                    </div>
+                    <!--<div class="azure-desc">
+                        <p class="skill-title"></p>
+                        <p>Microsoft Azure is a cloud computing service for building, testing, deploying, and managing applications.</p>
+                        <ul>
+                            <li>Hybrid cloud solutions</li>
+                            <li>AI and machine learning</li>
+                            <li>IoT solutions</li>
+                            <li>DevOps tools</li>
+                            <li>Enterprise applications</li>
+                            <li>Data analytics</li>
+                        </ul>
+                    </div>-->
+                    <div class="linux-desc">
+                        <p class="skill-title"></p>
+                        <p>Linux is an open-source operating system used widely in servers, development environments, and embedded systems.</p>
+                        <ul>
+                            <li>Server administration</li>
+                            <li>Command-line proficiency</li>
+                            <li>Shell scripting</li>
+                            <li>System security</li>
+                            <li>Networking configuration</li>
+                            <li>Container orchestration</li>
+                        </ul>
+                    </div>
+                    <div class="xampp-desc">
+                        <p class="skill-title"></p>
+                        <p>MySQL is an open-source relational database management system known for its reliability and performance.</p>
+                        <ul>
+                            <li>Database design</li>
+                            <li>SQL query optimization</li>
+                            <li>Data modeling</li>
+                            <li>Stored procedures</li>
+                            <li>Transaction management</li>
+                            <li>Backup and recovery</li>
+                        </ul>
+                    </div>
+                    <div class="godot-desc">
+                        <p class="skill-title"></p>
+                        <p>MongoDB is a NoSQL document database designed for scalability and developer productivity.</p>
+                        <ul>
+                            <li>Document storage</li>
+                            <li>Schema design</li>
+                            <li>Aggregation framework</li>
+                            <li>Scalability and sharding</li>
+                            <li>Geospatial queries</li>
+                            <li>Real-time analytics</li>
+                        </ul>
+                    </div>
+                    <div class="android-studio-desc">
+                        <p class="skill-title"></p>
+                        <p>Redis is an open-source, in-memory data structure store used as a database, cache, and message broker.</p>
+                        <ul>
+                            <li>Caching strategies</li>
+                            <li>Session management</li>
+                            <li>Pub/Sub messaging</li>
+                            <li>Real-time analytics</li>
+                            <li>Geospatial indexing</li>
+                            <li>Rate limiting</li>
+                        </ul>
+                    </div>
+                    
+                </div><!-- /skill-description -->
+                
+                <div class="scroll-indicator">
+                    <svg width="20px" height="30px" viewBox="0 0 247 390" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                        <path id="wheel" d="M123.359,79.775l0,72.843" style="fill:none;stroke:#666;stroke-width:20px;"/>
+                        <path id="mouse" d="M236.717,123.359c0,-62.565 -50.794,-113.359 -113.358,-113.359c-62.565,0 -113.359,50.794 -113.359,113.359l0,143.237c0,62.565 50.794,113.359 113.359,113.359c62.564,0 113.358,-50.794 113.358,-113.359l0,-143.237Z" style="fill:none;stroke:#666;stroke-width:20px;"/>
+                    </svg>
+                    <p class="scroll-text">Scroll down</p>
+                </div><!-- /scroll-indicator -->
+                
+            </div><!-- /skill-info -->
+                
+        </div><!-- /skills-flex -->
+    </div><!-- /skills-container -->
+</section>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="projects-section">
+        <div class="projects-container">
+            <!-- Section Header -->
+            <div class="projects-header">
+                <h2 class="projects-title">Featured Projects</h2>
+                <p class="projects-subtitle">A selection of my best work showcasing different skills and technologies</p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <!-- Project 1: Iron Craft -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&crop=center" alt="Iron Craft Project" class="project-preview">
+                        <div class="project-overlay">
+                            <a href="#" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-category">E-commerce</span>
+                            <span class="project-status live">Live</span>
+                        </div>
+                        <h3 class="project-name">Iron Craft</h3>
+                        <p class="project-description">
+                            A modern e-commerce platform for handmade iron crafts with advanced filtering, 
+                            secure payments, and comprehensive admin dashboard.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Traffic Tamers -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center" alt="Traffic Tamers Project" class="project-preview">
+                        <div class="project-overlay">
+                            <a href="#" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-category">Analytics</span>
+                            <span class="project-status live">Live</span>
+                        </div>
+                        <h3 class="project-name">Traffic Tamers</h3>
+                        <p class="project-description">
+                            Intelligent traffic management system with real-time analytics, route optimization, 
+                            and predictive modeling for urban planning.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: EcoTracker -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop&crop=center" alt="EcoTracker Project" class="project-preview">
+                        <div class="project-overlay">
+                            <a href="#" class="view-project-btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-category">Mobile App</span>
+                            <span class="project-status development">In Development</span>
+                        </div>
+                        <h3 class="project-name">EcoTracker</h3>
+                        <p class="project-description">
+                            Mobile app for tracking carbon footprint with gamification elements, 
+                            community challenges, and personalized sustainability recommendations.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link disabled">
+                                <i class="fas fa-clock"></i>
+                                Coming Soon
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Projects CTA -->
+            <div class="projects-cta">
+                <a href="#" class="cta-btn">
+                    <span>View All Projects</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+	
+     <section class="projects-animated-container">
+        <div class="projects-animated">
+            <div class="section-title">
+                <h2>My Projects Portfolio</h2>
+                <p>Browse through my work filtered by category</p>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="website">Website Redesign</button>
+                <button class="filter-btn" data-filter="email">HTML Emails</button>
+                <button class="filter-btn" data-filter="signature">HTML Signatures</button>
+                <button class="filter-btn" data-filter="gif">HTML/CSS Animations</button>
+                <button class="filter-btn" data-filter="optimization">Optimization</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Website Redesign Projects -->
+                <div class="project-card" data-category="website">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="E-commerce Website Redesign">
+                    </div>
+                    <div class="project-content">
+                        <h3>E-commerce Website Redesign</h3>
+                        <p>Complete redesign of an online store with improved UX and mobile responsiveness. Increased conversion rate by 35%.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="website">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Portfolio Website">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Website Design</h3>
+                        <p>Modern portfolio website for a creative professional with custom animations and responsive layout.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- HTML Email Projects -->
+                <div class="project-card" data-category="email">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1516893842880-5cc6a6eeb4ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Newsletter Template">
+                    </div>
+                    <div class="project-content">
+                        <h3>Responsive Newsletter Template</h3>
+                        <p>HTML email newsletter that works across all major email clients with fallbacks for Outlook.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">Email Design</span>
+                            <span class="project-tag">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="email">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Promotional Email">
+                    </div>
+                    <div class="project-content">
+                        <h3>Promotional Email Campaign</h3>
+                        <p>Series of promotional emails with consistent branding and high conversion rates.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Email Marketing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- HTML Signature Projects -->
+                <div class="project-card" data-category="signature">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Corporate Email Signature">
+                    </div>
+                    <div class="project-content">
+                        <h3>Corporate Email Signatures</h3>
+                        <p>Branded HTML email signatures for a corporate team with social media links and branding.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Outlook</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="signature">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Professional Signature">
+                    </div>
+                    <div class="project-content">
+                        <h3>Professional Signature Design</h3>
+                        <p>Elegant and professional email signature design with responsive layout and social icons.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- HTML/CSS Animation Projects -->
+                <div class="project-card" data-category="gif">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1633287387306-f08b4b7051db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1260&q=80" alt="CSS Animation">
+                    </div>
+                    <div class="project-content">
+                        <h3>Animated Product Showcase</h3>
+                        <p>CSS-powered animation to showcase product features with smooth transitions and effects.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Animation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="gif">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Interactive Gallery">
+                    </div>
+                    <div class="project-content">
+                        <h3>Interactive Image Gallery</h3>
+                        <p>Pure CSS interactive gallery with hover effects and smooth transitions.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Animation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Optimization Projects -->
+                <div class="project-card" data-category="optimization">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Website Optimization">
+                    </div>
+                    <div class="project-content">
+                        <h3>Website Performance Optimization</h3>
+                        <p>Improved loading times by 70% for an e-commerce site through code optimization and image compression.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Optimization</span>
+                            <span class="project-tag">SEO</span>
+                            <span class="project-tag">Performance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="optimization">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="SEO Optimization">
+                    </div>
+                    <div class="project-content">
+                        <h3>SEO Optimization Project</h3>
+                        <p>Comprehensive SEO improvements leading to 150% increase in organic traffic.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">SEO</span>
+                            <span class="project-tag">Performance</span>
+                            <span class="project-tag">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Projects -->
+                <div class="project-card" data-category="website">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Business Website">
+                    </div>
+                    <div class="project-content">
+                        <h3>Business Website Design</h3>
+                        <p>Modern business website with clear call-to-actions and responsive design.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="email">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Transaction Email">
+                    </div>
+                    <div class="project-content">
+                        <h3>Transaction Email Templates</h3>
+                        <p>Set of responsive transaction emails for order confirmations, shipping notifications, etc.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="gif">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Loading Animation">
+                    </div>
+                    <div class="project-content">
+                        <h3>Custom Loading Animations</h3>
+                        <p>Collection of custom CSS loading animations for websites and applications.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Animation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="optimization">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Speed Optimization">
+                    </div>
+                    <div class="project-content">
+                        <h3>Website Speed Optimization</h3>
+                        <p>Comprehensive speed optimization for a news website, improving Core Web Vitals scores.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Performance</span>
+                            <span class="project-tag">Optimization</span>
+                            <span class="project-tag">Lighthouse</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="no-projects">
+                    <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                    <h3>No projects found</h3>
+                    <p>There are no projects in this category yet.</p>
+                </div>
+            </div>
+            
+            <div class="load-more-container">
+                <button class="load-more-btn">Load More Projects</button>
+            </div>
+        </div>
+    </section>
+	
+            <!-- ===== SHOWCASE SECTION ===== -->
+            <section class="showcase-section">
+                <div class="showcase-container">
+                    <!-- Section Header -->
+                    <div class="showcase-header">
+                        <h2 class="showcase-title">Website Transformations</h2>
+                        <p class="showcase-subtitle">Witness the magic of modern web design - from outdated to outstanding</p>
+                    </div>
+            
+                    <!-- Showcase Grid -->
+                    <div class="showcase-grid">
+                        <!-- Showcase Item 1: Iron Craft -->
+                        <div class="showcase-item">
+                            <div class="showcase-slider">
+                                <div class="before-after-container">
+                                    <div class="before-image">
+                                        <img src="images/projects/ironcraft-before.png" alt="Before - Iron Craft Website">
+                                    </div>
+                                    <div class="after-image">
+                                        <img src="images/projects/ironcraft-after.png" alt="After - Iron Craft Website">
+                                    </div>
+                                    <div class="slider-handle">
+                                        <div class="handle-line"></div>
+                                        <div class="handle-circle">
+                                            <i class="fas fa-arrows-alt-h"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-content">
+                                <div class="project-info">
+                                    <div class="project-logo">
+                                        <img src="images/website-defaults/ironcraft-logo.svg" alt="Iron Craft Logo" class="logo-image">
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-category">Manufacturing Website</span>
+                                    </div>
+                                    <p class="project-description">
+                                        Complete transformation of an outdated iron crafts manufacturing website into a modern, 
+                                        professional presentation platform. The new design showcases the company's craftsmanship 
+                                        with stunning product galleries, detailed manufacturing processes, and a clean, 
+                                        corporate aesthetic that builds trust and credibility with potential clients.
+                                    </p>
+                                    <div class="project-tech-stack">
+                                        <span class="tech-icon">
+                                            <img src="images/skills/HTML5.svg" alt="HTML5" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/CSS3.svg" alt="CSS3" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/javascript6.svg" alt="JavaScript" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/php.svg" alt="PHP" class="tech-image">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="project-actions">
+                                    <a href="#" class="showcase-btn primary">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Live Site
+                                    </a>
+                                    <a href="#" class="showcase-btn secondary">
+                                        <i class="fas fa-file-alt"></i>
+                                        Case Study
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Showcase Item 2: Traffic Tamers -->
+                        <div class="showcase-item">
+                            <div class="showcase-slider">
+                                <div class="before-after-container">
+                                    <div class="before-image">
+                                        <img src="images/projects/traffic-tamers-before.png" alt="Before - Traffic Tamers Dashboard">
+                                    </div>
+                                    <div class="after-image">
+                                        <img src="images/projects/traffic-tamers-after.png" alt="After - Traffic Tamers Dashboard">
+                                    </div>
+                                    <div class="slider-handle">
+                                        <div class="handle-line"></div>
+                                        <div class="handle-circle">
+                                            <i class="fas fa-arrows-alt-h"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-content">
+                                <div class="project-info">
+                                    <div class="project-logo">
+                                        <img src="images/website-defaults/traffictamers-logo.svg" alt="Traffic Tamers Logo" class="logo-image">
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-category">Presentation Website</span>
+                                    </div>
+                                    <p class="project-description">
+                                        Redesigned traffic management presentation website with modern design principles, 
+                                        showcasing the company's innovative solutions and expertise in traffic optimization. 
+                                        The new design features interactive elements, compelling case studies, and a 
+                                        professional layout that effectively communicates the company's value proposition 
+                                        to potential clients and partners.
+                                    </p>
+                                    <div class="project-tech-stack">
+                                        <span class="tech-icon">
+                                            <img src="images/skills/HTML5.svg" alt="HTML5" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/CSS3.svg" alt="CSS3" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/javascript6.svg" alt="JavaScript" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/php.svg" alt="PHP" class="tech-image">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="project-actions">
+                                    <a href="#" class="showcase-btn primary">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Live Site
+                                    </a>
+                                    <a href="#" class="showcase-btn secondary">
+                                        <i class="fas fa-file-alt"></i>
+                                        Case Study
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Hidden Showcase Items (Load More Content) -->
+                        <div class="showcase-item hidden" data-showcase="hidden-1">
+                            <div class="showcase-slider">
+                                <div class="before-after-container">
+                                    <div class="before-image">
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&crop=center" alt="Before - EcoTracker Mobile App">
+                                    </div>
+                                    <div class="after-image">
+                                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&crop=center" alt="After - EcoTracker Mobile App">
+                                    </div>
+                                    <div class="slider-handle">
+                                        <div class="handle-line"></div>
+                                        <div class="handle-circle">
+                                            <i class="fas fa-arrows-alt-h"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-content">
+                                <div class="project-info">
+                                    <div class="project-logo">
+                                        <img src="images/website-defaults/ironcraft-logo.svg" alt="Project Logo" class="logo-image">
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-category">Presentation Website</span>
+                                    </div>
+                                    <p class="project-description">
+                                        Modern presentation website redesign with cutting-edge design principles and 
+                                        user experience optimization. The new design incorporates contemporary web trends, 
+                                        smooth animations, and intuitive navigation to create an engaging digital presence 
+                                        that effectively communicates the brand's message and values.
+                                    </p>
+                                    <div class="project-tech-stack">
+                                        <span class="tech-icon">
+                                            <img src="images/skills/HTML5.svg" alt="HTML5" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/CSS3.svg" alt="CSS3" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/javascript6.svg" alt="JavaScript" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/php.svg" alt="PHP" class="tech-image">
+                                        </span>
+                                    </div>
+                                    <div class="responsive-design">
+                                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=200&fit=crop&crop=center" alt="Responsive Design" class="responsive-image">
+                                        <span class="responsive-label">Fully Responsive Design</span>
+                                    </div>
+                                </div>
+                                <div class="project-actions">
+                                    <a href="#" class="showcase-btn primary">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Live Site
+                                    </a>
+                                    <a href="#" class="showcase-btn secondary">
+                                        <i class="fas fa-file-alt"></i>
+                                        Case Study
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="showcase-item hidden" data-showcase="hidden-2">
+                            <div class="showcase-slider">
+                                <div class="before-after-container">
+                                    <div class="before-image">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center" alt="Before - DataViz Hub Platform">
+                                    </div>
+                                    <div class="after-image">
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center" alt="After - DataViz Hub Platform">
+                                    </div>
+                                    <div class="slider-handle">
+                                        <div class="handle-line"></div>
+                                        <div class="handle-circle">
+                                            <i class="fas fa-arrows-alt-h"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-content">
+                                <div class="project-info">
+                                    <div class="project-logo">
+                                        <img src="images/website-defaults/traffictamers-logo.svg" alt="Project Logo" class="logo-image">
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-category">Presentation Website</span>
+                                    </div>
+                                    <p class="project-description">
+                                        Professional presentation website redesign with modern web technologies and 
+                                        user-centered design principles. The new design features elegant typography, 
+                                        smooth transitions, and optimized performance to deliver an exceptional 
+                                        user experience across all devices and platforms.
+                                    </p>
+                                    <div class="project-tech-stack">
+                                        <span class="tech-icon">
+                                            <img src="images/skills/HTML5.svg" alt="HTML5" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/CSS3.svg" alt="CSS3" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/javascript6.svg" alt="JavaScript" class="tech-image">
+                                        </span>
+                                        <span class="tech-icon">
+                                            <img src="images/skills/php.svg" alt="PHP" class="tech-image">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="project-actions">
+                                    <a href="#" class="showcase-btn primary">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Live Site
+                                    </a>
+                                    <a href="#" class="showcase-btn secondary">
+                                        <i class="fas fa-file-alt"></i>
+                                        Case Study
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Load More Button -->
+                    <div class="showcase-load-more">
+                        <button class="load-more-btn" id="loadMoreBtn">
+                            <span class="btn-text">Load More Projects</span>
+                            <span class="btn-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                            <span class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                        <p class="load-more-text">Discover more amazing transformations</p>
+                    </div>
+                </div>
+            </section>
+            
+            
+            <!-- ===== CONTACT SECTION ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.ui.js"></script>
+    <script src="typewriter.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
