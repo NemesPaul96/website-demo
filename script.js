@@ -1093,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {title: "NODEJS", content: "nodejs-desc", color: "#8cc84b", img: "images/skills/nodejs.svg"},
                 {title: "REACT", content: "react-desc", color: "#00d8ff", img: "images/skills/react.svg"},
                 {title: "PYTHON", content: "python-desc", color: "#3776AB", img: "images/skills/python.svg"},
-                {title: "KOTLIN", content: "kotlin-desc", color: "#007396", img: "images/skills/kotlin.svg"},
+                {title: "KOTLIN", content: "kotlin-desc", color: "#4971a9", img: "images/skills/kotlin.svg"},
                 //{title: "C#", content: "csharp-desc", color: "#68217A", img: "images/skills/"},
                 //{title: "RUBY", content: "ruby-desc", color: "#CC342D", img: "images/skills/"},
                 //{title: "GO", content: "go-desc", color: "#00ADD8", img: "images/skills/"},
@@ -1103,20 +1103,20 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Software skills
             const softwareSkills = [
-                {title: "ARTIFICIAL INTELIGENCE", content: "ai-desc", color: "#19a9d8", img: "images/skills/Ai-dark.svg"},
+                {title: "ARTIFICIAL INTELIGENCE", content: "ai-desc", color: "#13e5da", img: "images/skills/Ai-dark.svg"},
                 {title: "BOOTSTRAP", content: "bootstrap-desc", color: "#8f4cce", img: "images/skills/bootstrap.svg"},
                 {title: "PHOTOSHOP", content: "photoshop-desc", color: "#31a8ff", img: "images/skills/photoshop.svg"},
                 {title: "FIGMA", content: "figma-desc", color: "#392372", img: "images/skills/figma.svg", iconClass:"icon-figma"},
                 {title: "CANVA", content: "canva-desc", color: "#3293d7", img: "images/skills/canva.svg", iconClass:"icon-canva"},
                 {title: "WORDPRESS", content: "wordpress-desc", color: "#21759b", img: "images/skills/wordpress.svg", iconClass:"icon-wordpress"},
-                {title: "GITHUB", content: "github-desc", color: "#dc4b36", img: "images/skills/github.svg"},
-                {title: "MAIL CHIMP", content: "mail-chimp-desc", color: "#2496ED", img: "images/skills/mailchimp.svg"},
+                {title: "GITHUB", content: "github-desc", color: "#3e77bf", img: "images/skills/github.svg"},
+                {title: "MAIL CHIMP", content: "mail-chimp-desc", color: "#fddd4c", img: "images/skills/mailchimp.svg"},
                 {title: "AWS", content: "aws-desc", color: "#FF9900", img: "images/skills/aws-white.svg"},
                 //{title: "AZURE", content: "azure-desc", color: "#0089D6", img: "images/skills/"},
                 {title: "LINUX", content: "linux-desc", color: "#FCC624", img: "images/skills/linux.svg"},
-                {title: "XAMPP", content: "xampp-desc", color: "#4479A1", img: "images/skills/xampp.svg"},
-                {title: "GODOT", content: "godot-desc", color: "#47A248", img: "images/skills/godot.svg"},
-                {title: "ANDROID STUDIO", content: "android-studio-desc", color: "#DC382D", img: "images/skills/android-studio.svg"}
+                {title: "XAMPP", content: "xampp-desc", color: "#fb7a24", img: "images/skills/xampp.svg"},
+                {title: "GODOT", content: "godot-desc", color: "#478cbf", img: "images/skills/godot.svg"},
+                {title: "ANDROID STUDIO", content: "android-studio-desc", color: "#4285f4", img: "images/skills/android-studio.svg"}
             ];
             
             // Create coding circle
