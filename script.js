@@ -1401,7 +1401,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ===== PROJECTS SLIDER FUNCTIONALITY =====
+    // ===== Conditional Featured Projects Slider =====
+    document.addEventListener('DOMContentLoaded', () => {
+        const grid = document.getElementById('featuredProjectsGrid');
+        if (!grid) return;
+  
+        const cards = grid.querySelectorAll('.project-card');
+        const wrapper = grid.parentElement;
+  
+        // Only initialize the slider if there are 4 or more cards
+        if (cards.length < 4) {
+            return;
+        }
+  
+        // --- Slider initialization ---
+        wrapper.classList.add('slider-active-padding'); 
+        grid.classList.add('is-slider');
+  
+        // Create and append arrows
+        const prevArrow = document.createElement('button');
+        prevArrow.className = 'projects-slider-arrow arrow-left';
+        prevArrow.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        wrapper.appendChild(prevArrow);
+  
+        const nextArrow = document.createElement('button');
+        nextArrow.className = 'projects-slider-arrow arrow-right';
+        nextArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        wrapper.appendChild(nextArrow);
+  
+        let currentIndex = 0;
+  
+        function getVisibleCount() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1200) return 2;
+            return 3;
+        }
+  
+        function updateSlider() {
+            const visibleCount = getVisibleCount();
+            const totalItems = cards.length;
+            const maxIndex = totalItems - visibleCount;
+  
+            // Clamp currentIndex
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+            }
+            if (currentIndex < 0) {
+                currentIndex = 0;
+            }
+  
+            const cardWidth = cards[0].offsetWidth;
+            const gap = parseInt(window.getComputedStyle(grid).gap) || 24;
+            const offset = -currentIndex * (cardWidth + gap);
+  
+            grid.style.transform = `translateX(${offset}px)`;
+  
+            // Update arrow states
+            prevArrow.disabled = currentIndex === 0;
+            nextArrow.disabled = currentIndex >= maxIndex;
+        }
+  
+        // Event Listeners
+        nextArrow.addEventListener('click', () => {
+            currentIndex++;
+            updateSlider();
+        });
+  
+        prevArrow.addEventListener('click', () => {
+            currentIndex--;
+            updateSlider();
+        });
+  
+        // Update on resize
+        window.addEventListener('resize', updateSlider);
+  
+        // Initial update
+        updateSlider();
+    });
 
 
     // ===== SHOWCASE SECTION FUNCTIONALITY =====
@@ -1579,11 +1655,11 @@ document.addEventListener('DOMContentLoaded', () => {
         initLoadMore();
     }
 
-	// ===== PROJECTS ANIMATED FUNCTIONALITY =====
+	// ===== PROJECTS FILTER FUNCTIONALITY =====
  
 document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
+            const projectCards = document.querySelectorAll('.project-filter-card');
             const loadMoreBtn = document.querySelector('.load-more-btn');
             const noProjectsMessage = document.querySelector('.no-projects');
             
