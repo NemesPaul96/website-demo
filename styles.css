@@ -1294,6 +1294,15 @@ body {
     overflow: hidden;
 }
 
+/* Hero Slider Initial State Fix */
+.hero .before-after-slider .slider-handle {
+    left: 0%;
+}
+
+.hero .before-after-slider .after-image {
+    clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
+}
+
 .slider-container {
     position: absolute;
     top: 0;
@@ -1724,6 +1733,11 @@ section.skills {
     z-index: 1;
     margin: 1px; /* Added spacing between hexagons */
 }
+
+.skills.in-view .skill {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 1;
+}
         
 .skill.center {
     transform: translate(-50%, -50%) scale(1.3) !important;
@@ -2147,7 +2161,7 @@ images that will be displayed on hexagon items are added from javascript file
 .projects-title {
     font-size: 3rem;
     font-weight: var(--font-weight-bold);
-    color: var(--text-primary);
+    color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
@@ -2472,11 +2486,7 @@ images that will be displayed on hexagon items are added from javascript file
 .projects-filter-title h2 {
     font-size: 2.5rem;
     margin-bottom: 15px;
-    color: #111827;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0099cc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-color);
 }
         
 .projects-filter-title p {
@@ -2769,18 +2779,13 @@ images that will be displayed on hexagon items are added from javascript file
 .showcase-title {
     font-size: 3.5rem;
     font-weight: var(--font-weight-bold);
-    color: var(--text-primary);
+    color: var(--primary-color);
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0099cc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .showcase-subtitle {
     font-size: 1.2rem;
     color: var(--text-secondary);
-    max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -2798,7 +2803,7 @@ images that will be displayed on hexagon items are added from javascript file
     background: var(--bg-secondary);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 20px 6px rgba(0, 0, 0, 0.15);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid var(--border-color);
 }
