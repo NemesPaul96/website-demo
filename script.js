@@ -953,12 +953,12 @@ class PortfolioApp {
              updateImageScroll(0);
          }
         
-                         // Start auto slide after 3 seconds delay
+                         // Start auto slide after 1 seconds delay
         setTimeout(() => {
             if (!this.isUserInteracting) {
                 startAutoSlide();
             }
-        }, 3000);
+        }, 1000);
         
         // Store cleanup function
         this.cleanupSlider = () => {
@@ -1054,6 +1054,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         animateElements.forEach(el => observer.observe(el));
+    }
+
+    // New observer for skills sections
+    const skillSections = document.querySelectorAll('.skills');
+    if (skillSections.length > 0) {
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    // Reset animation when out of view
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, {
+            threshold: 0.4, // Trigger when 40% of the section is visible
+        });
+
+        skillSections.forEach(section => {
+            skillObserver.observe(section);
+        });
     }
 });
 
@@ -1153,7 +1174,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Set initial position
                 skillElement.css({
                     left: x + 'px',
-                    top: y + 'px'
+                    top: y + 'px',
+                    'transition-delay': (1000 + (index * 100)) + 'ms'
                 });
                 
                 container.append(skillElement);
@@ -1240,22 +1262,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 $(this).css({
                     left: x + 'px',
                     top: y + 'px'
-                });
-            });
-        }
-
-        // Initial animations
-        function circleInitialAnimation() {
-            $(".skill").each(function(index) {
-                $(this).velocity({
-                    translateX: "-50%",
-                    translateY: "-50%",
-                    scale: 1,
-                    opacity: 1
-                }, {
-                    duration: 600,
-                    delay: index * 100,
-                    easing: "easeOutBack"
                 });
             });
         }
@@ -1383,9 +1389,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initialize animations
         createCircularLayout();
-        setTimeout(function() {
-            circleInitialAnimation();
-        }, 300);
         
         
         
