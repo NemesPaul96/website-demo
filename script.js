@@ -1,29 +1,40 @@
-// Portfolio Website JavaScript - Optimized Version
-
+// this makes the site to display functionality like light or dark mode based on day or night time or user choise.
+// this also checkes if the language of the website is default delivered or by users choise
 class PortfolioApp {
     constructor() {
+        // decides what theme to display
         this.currentTheme = this.getInitialTheme();
+        // decides what language to display website
         this.currentLang = localStorage.getItem('language') || 'en';
-        this.isUserInteracting = false;
-        this.autoSlideInterval = null;
-        this.autoSlideTimeout = null;
-        this.ticking = false;
-        this.isPageVisible = true;
-        this.isSliderPaused = false; // Track global slider pause state
+       
+       // Status Trackers
+        this.isUserInteracting = false; // checks if user draggs hero slider
+        this.autoSlideInterval = null; // this will check the timer for hero slider auto movement
+        this.autoSlideTimeout = null; // another timer check for the slider on herp
+        this.ticking = false; // A performance helper for scrolling. It ensures scroll-related animations are smooth and don't overload the browser.
+        this.isPageVisible = true; //Is the user looking at this browser tab right now? This helps pause animations if you switch to another tab.
+        this.isSliderPaused = false; // Track hero slider pause state if user clicked pause button
         
-        // Cache frequently used DOM elements
+        // Cache frequently used DOM elements To make the website faster.
         this.elements = {};
+        /*
+        Purpose: To kick off the main setup.
+        How it works: After all the initial properties and trackers are ready, this line says: 
+        "Okay, preparation is done. Run the init() function now." The init() function is responsible 
+        for actually applying the theme, setting up the sliders, and making the buttons work.
+        */ 
         this.init();
     }
 
+// decide whether the website should start in "light" or "dark" mode.
     getInitialTheme() {
-        const savedTheme = localStorage.getItem('theme');
+        const savedTheme = localStorage.getItem('theme'); // Check for a Saved Preference
         if (savedTheme) {
             return savedTheme;
         }
 
-        const currentHour = new Date().getHours();
-        // Light mode between 7 AM (7) and 8 PM (20)
+        const currentHour = new Date().getHours(); // Automatic Detection (if no preference is saved)
+        // Light mode between 7 AM and 8 PM (20)
         if (currentHour >= 7 && currentHour < 20) {
             return 'light';
         } else {
@@ -33,7 +44,9 @@ class PortfolioApp {
     
     init() {
         this.cacheElements();
-        this.setTheme(this.currentTheme);
+        // It saves the new choice ('light' or 'dark') to the browser's localStorage, so it can be remembered for your next visit.
+        this.setTheme(this.currentTheme); // runs when you click the sun/moon icon.
+        
         this.setLanguage(this.currentLang);
         this.bindEvents();
         this.handleScrolling();
@@ -953,12 +966,12 @@ class PortfolioApp {
              updateImageScroll(0);
          }
         
-                         // Start auto slide after 3 seconds delay
+                         // Start auto slide after 1 seconds delay
         setTimeout(() => {
             if (!this.isUserInteracting) {
                 startAutoSlide();
             }
-        }, 3000);
+        }, 1000);
         
         // Store cleanup function
         this.cleanupSlider = () => {
@@ -1055,9 +1068,143 @@ document.addEventListener('DOMContentLoaded', () => {
         
         animateElements.forEach(el => observer.observe(el));
     }
+
+    // New observer for skills sections
+    const skillSections = document.querySelectorAll('.skills');
+    if (skillSections.length > 0) {
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const section = entry.target;
+                if (entry.isIntersecting) {
+                    section.classList.add('in-view');
+
+                    // Set a timeout to remove transition-delay after the animation
+                    setTimeout(() => {
+                        section.classList.add('animation-finished');
+                    }, 3000); // Adjust this time to match your longest animation delay
+
+                } else {
+                    // Reset animation when out of view
+                    section.classList.remove('in-view', 'animation-finished', 'skill-is-active');
+                    
+                    // Reset the circle layout
+                    const container = $(section).find('.circle-container');
+                    resetToCircle(container);
+
+                    // Hide any active description
+                    const activeDesc = $(section).find('.desc-active');
+                    if (activeDesc.length > 0) {
+                        activeDesc.velocity("transition.slideRightBigOut", {
+                            duration: 300,
+                            complete: function() {
+                                activeDesc.removeClass('desc-active');
+                            }
+                        });
+                    }
+
+                    // Remove active state from any skill
+                    $(section).find('.skill-active').removeClass('skill-active');
+
+                    // Reset transition-delay for next time
+                    section.querySelectorAll('.skill').forEach((skill, index) => {
+                        skill.style.transitionDelay = `${1000 + (index * 100)}ms`;
+                    });
+                }
+            });
+        }, {
+            threshold: 0.4, // Trigger when 40% of the section is visible
+        });
+
+        skillSections.forEach(section => {
+            skillObserver.observe(section);
+        });
+    }
 });
 
 // ===== PORTFOLIO SKILLS FUNCTIONALITY =====
+// Move a skill to center and arrange others in circle
+function moveToCenter(clickedSkill, container) {
+    const skills = container.find('.skill');
+    const centerX = container.width() / 2;
+    const centerY = container.height() / 2;
+    const radius = 220; // Increased radius to accommodate spacing
+    
+    // Remove center class from all skills
+    skills.removeClass('center');
+    
+    // Add center class to clicked skill
+    clickedSkill.addClass('center');
+    
+    // Get index of clicked skill
+    const clickedIndex = skills.index(clickedSkill);
+    
+    // Reposition all skills
+    skills.each(function(index) {
+        if ($(this).is(clickedSkill)) {
+            // Move to center
+            $(this).css({
+                left: centerX + 'px',
+                top: centerY + 'px'
+            });
+        } else {
+            // Calculate new position in circle
+            // Adjust index to account for the clicked skill being removed from the circle
+            let adjustedIndex = index;
+            if (index > clickedIndex) adjustedIndex--;
+            
+            const angle = (adjustedIndex * (2 * Math.PI / (skills.length - 1))) - (Math.PI / 2);
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            
+            $(this).css({
+                left: x + 'px',
+                top: y + 'px'
+            });
+        }
+    });
+}
+
+// Reset to circular layout
+function resetToCircle(container) {
+    const skills = container.find('.skill');
+    const radius = 220; // Increased radius to accommodate spacing
+    const centerX = container.width() / 2;
+    const centerY = container.height() / 2;
+    
+    // Remove center class from all skills
+    skills.removeClass('center');
+    
+    // Reposition all skills in a circle
+    skills.each(function(index) {
+        const angle = (index * (2 * Math.PI / skills.length)) - (Math.PI / 2);
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        
+        $(this).css({
+            left: x + 'px',
+            top: y + 'px'
+        });
+    });
+}
+
+// Position all skills in a circle
+function positionSkillsInCircle(container) {
+    const skills = container.find('.skill');
+    const radius = 220; // Increased radius to accommodate spacing
+    const centerX = container.width() / 2;
+    const centerY = container.height() / 2;
+    
+    skills.each(function(index) {
+        const angle = (index * (2 * Math.PI / skills.length)) - (Math.PI / 2);
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        
+        $(this).css({
+            left: x + 'px',
+            top: y + 'px'
+        });
+    });
+}
  $(document).ready(function() {
         
 
@@ -1093,7 +1240,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 {title: "NODEJS", content: "nodejs-desc", color: "#8cc84b", img: "images/skills/nodejs.svg"},
                 {title: "REACT", content: "react-desc", color: "#00d8ff", img: "images/skills/react.svg"},
                 {title: "PYTHON", content: "python-desc", color: "#3776AB", img: "images/skills/python.svg"},
-                {title: "KOTLIN", content: "kotlin-desc", color: "#007396", img: "images/skills/kotlin.svg"},
+                {title: "KOTLIN", content: "kotlin-desc", color: "#4971a9", img: "images/skills/kotlin.svg"},
+                {title: "BOOTSTRAP", content: "bootstrap-desc", color: "#8f4cce", img: "images/skills/bootstrap.svg"}
                 //{title: "C#", content: "csharp-desc", color: "#68217A", img: "images/skills/"},
                 //{title: "RUBY", content: "ruby-desc", color: "#CC342D", img: "images/skills/"},
                 //{title: "GO", content: "go-desc", color: "#00ADD8", img: "images/skills/"},
@@ -1103,20 +1251,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Software skills
             const softwareSkills = [
-                {title: "ARTIFICIAL INTELIGENCE", content: "ai-desc", color: "#19a9d8", img: "images/skills/Ai-dark.svg"},
-                {title: "BOOTSTRAP", content: "bootstrap-desc", color: "#8f4cce", img: "images/skills/bootstrap.svg"},
+                {title: "ARTIFICIAL INTELIGENCE", content: "ai-desc", color: "#13e5da", img: "images/skills/Ai-dark.svg"},
                 {title: "PHOTOSHOP", content: "photoshop-desc", color: "#31a8ff", img: "images/skills/photoshop.svg"},
                 {title: "FIGMA", content: "figma-desc", color: "#392372", img: "images/skills/figma.svg", iconClass:"icon-figma"},
                 {title: "CANVA", content: "canva-desc", color: "#3293d7", img: "images/skills/canva.svg", iconClass:"icon-canva"},
                 {title: "WORDPRESS", content: "wordpress-desc", color: "#21759b", img: "images/skills/wordpress.svg", iconClass:"icon-wordpress"},
-                {title: "GITHUB", content: "github-desc", color: "#dc4b36", img: "images/skills/github.svg"},
-                {title: "MAIL CHIMP", content: "mail-chimp-desc", color: "#2496ED", img: "images/skills/mailchimp.svg"},
+                {title: "GITHUB", content: "github-desc", color: "#3e77bf", img: "images/skills/github.svg"},
+                {title: "MAIL CHIMP", content: "mail-chimp-desc", color: "#fddd4c", img: "images/skills/mailchimp.svg"},
                 {title: "AWS", content: "aws-desc", color: "#FF9900", img: "images/skills/aws-white.svg"},
                 //{title: "AZURE", content: "azure-desc", color: "#0089D6", img: "images/skills/"},
                 {title: "LINUX", content: "linux-desc", color: "#FCC624", img: "images/skills/linux.svg"},
-                {title: "XAMPP", content: "xampp-desc", color: "#4479A1", img: "images/skills/xampp.svg"},
-                {title: "GODOT", content: "godot-desc", color: "#47A248", img: "images/skills/godot.svg"},
-                {title: "ANDROID STUDIO", content: "android-studio-desc", color: "#DC382D", img: "images/skills/android-studio.svg"}
+                {title: "XAMPP", content: "xampp-desc", color: "#fb7a24", img: "images/skills/xampp.svg"},
+                {title: "GODOT", content: "godot-desc", color: "#478cbf", img: "images/skills/godot.svg"},
+                {title: "ANDROID STUDIO", content: "android-studio-desc", color: "#4285f4", img: "images/skills/android-studio.svg"}
             ];
             
             // Create coding circle
@@ -1153,113 +1300,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Set initial position
                 skillElement.css({
                     left: x + 'px',
-                    top: y + 'px'
+                    top: y + 'px',
+                    'transition-delay': (1000 + (index * 100)) + 'ms'
                 });
                 
                 container.append(skillElement);
             });
         }
         
-        // Position all skills in a circle
-        function positionSkillsInCircle(container) {
-            const skills = container.find('.skill');
-            const radius = 220; // Increased radius to accommodate spacing
-            const centerX = container.width() / 2;
-            const centerY = container.height() / 2;
-            
-            skills.each(function(index) {
-                const angle = (index * (2 * Math.PI / skills.length)) - (Math.PI / 2);
-                const x = centerX + radius * Math.cos(angle);
-                const y = centerY + radius * Math.sin(angle);
-                
-                $(this).css({
-                    left: x + 'px',
-                    top: y + 'px'
-                });
-            });
-        }
-        
-        // Move a skill to center and arrange others in circle
-        function moveToCenter(clickedSkill, container) {
-            const skills = container.find('.skill');
-            const centerX = container.width() / 2;
-            const centerY = container.height() / 2;
-            const radius = 220; // Increased radius to accommodate spacing
-            
-            // Remove center class from all skills
-            skills.removeClass('center');
-            
-            // Add center class to clicked skill
-            clickedSkill.addClass('center');
-            
-            // Get index of clicked skill
-            const clickedIndex = skills.index(clickedSkill);
-            
-            // Reposition all skills
-            skills.each(function(index) {
-                if ($(this).is(clickedSkill)) {
-                    // Move to center
-                    $(this).css({
-                        left: centerX + 'px',
-                        top: centerY + 'px'
-                    });
-                } else {
-                    // Calculate new position in circle
-                    // Adjust index to account for the clicked skill being removed from the circle
-                    let adjustedIndex = index;
-                    if (index > clickedIndex) adjustedIndex--;
-                    
-                    const angle = (adjustedIndex * (2 * Math.PI / (skills.length - 1))) - (Math.PI / 2);
-                    const x = centerX + radius * Math.cos(angle);
-                    const y = centerY + radius * Math.sin(angle);
-                    
-                    $(this).css({
-                        left: x + 'px',
-                        top: y + 'px'
-                    });
-                }
-            });
-        }
-        
-        // Reset to circular layout
-        function resetToCircle(container) {
-            const skills = container.find('.skill');
-            const radius = 220; // Increased radius to accommodate spacing
-            const centerX = container.width() / 2;
-            const centerY = container.height() / 2;
-            
-            // Remove center class from all skills
-            skills.removeClass('center');
-            
-            // Reposition all skills in a circle
-            skills.each(function(index) {
-                const angle = (index * (2 * Math.PI / skills.length)) - (Math.PI / 2);
-                const x = centerX + radius * Math.cos(angle);
-                const y = centerY + radius * Math.sin(angle);
-                
-                $(this).css({
-                    left: x + 'px',
-                    top: y + 'px'
-                });
-            });
-        }
-
-        // Initial animations
-        function circleInitialAnimation() {
-            $(".skill").each(function(index) {
-                $(this).velocity({
-                    translateX: "-50%",
-                    translateY: "-50%",
-                    scale: 1,
-                    opacity: 1
-                }, {
-                    duration: 600,
-                    delay: index * 100,
-                    easing: "easeOutBack"
-                });
-            });
-        }
-
         // Hexagon click handler
         $("body").on("click", ".skill", function() {
             const titleColor = $(this).data("color");
@@ -1287,6 +1335,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Remove active state and reset to circle
                 $(this).removeClass('skill-active');
+                $section.removeClass('skill-is-active');
                 resetToCircle($container);
                 return;
             }
@@ -1294,6 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Toggle active class on clicked hexagon
             $section.find('.skill').removeClass('skill-active');
             $(this).addClass('skill-active');
+            $section.addClass('skill-is-active');
             
             // Move to center
             moveToCenter($(this), $container);
@@ -1383,9 +1433,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initialize animations
         createCircularLayout();
-        setTimeout(function() {
-            circleInitialAnimation();
-        }, 300);
         
         
         
@@ -1401,7 +1448,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ===== PROJECTS SLIDER FUNCTIONALITY =====
+    // ===== Conditional Featured Projects Slider =====
+    document.addEventListener('DOMContentLoaded', () => {
+        const grid = document.getElementById('featuredProjectsGrid');
+        if (!grid) return;
+  
+        const cards = grid.querySelectorAll('.project-card');
+        const wrapper = grid.parentElement;
+  
+        // Only initialize the slider if there are 4 or more cards
+        if (cards.length < 4) {
+            return;
+        }
+  
+        // --- Slider initialization ---
+        wrapper.classList.add('slider-active-padding'); 
+        grid.classList.add('is-slider');
+  
+        // Create and append arrows
+        const prevArrow = document.createElement('button');
+        prevArrow.className = 'projects-slider-arrow arrow-left';
+        prevArrow.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        wrapper.appendChild(prevArrow);
+  
+        const nextArrow = document.createElement('button');
+        nextArrow.className = 'projects-slider-arrow arrow-right';
+        nextArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        wrapper.appendChild(nextArrow);
+  
+        let currentIndex = 0;
+  
+        function getVisibleCount() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1200) return 2;
+            return 3;
+        }
+  
+        function updateSlider() {
+            const visibleCount = getVisibleCount();
+            const totalItems = cards.length;
+            const maxIndex = totalItems - visibleCount;
+  
+            // Clamp currentIndex
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+            }
+            if (currentIndex < 0) {
+                currentIndex = 0;
+            }
+  
+            const cardWidth = cards[0].offsetWidth;
+            const gap = parseInt(window.getComputedStyle(grid).gap) || 24;
+            const offset = -currentIndex * (cardWidth + gap);
+  
+            grid.style.transform = `translateX(${offset}px)`;
+  
+            // Update arrow states
+            prevArrow.disabled = currentIndex === 0;
+            nextArrow.disabled = currentIndex >= maxIndex;
+        }
+  
+        // Event Listeners
+        nextArrow.addEventListener('click', () => {
+            currentIndex++;
+            updateSlider();
+        });
+  
+        prevArrow.addEventListener('click', () => {
+            currentIndex--;
+            updateSlider();
+        });
+  
+        // Update on resize
+        window.addEventListener('resize', updateSlider);
+  
+        // Initial update
+        updateSlider();
+    });
 
 
     // ===== SHOWCASE SECTION FUNCTIONALITY =====
@@ -1579,11 +1702,11 @@ document.addEventListener('DOMContentLoaded', () => {
         initLoadMore();
     }
 
-	// ===== PROJECTS ANIMATED FUNCTIONALITY =====
+	// ===== PROJECTS FILTER FUNCTIONALITY =====
  
 document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
+            const projectCards = document.querySelectorAll('.project-filter-card');
             const loadMoreBtn = document.querySelector('.load-more-btn');
             const noProjectsMessage = document.querySelector('.no-projects');
             
